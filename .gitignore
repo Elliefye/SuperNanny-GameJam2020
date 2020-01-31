@@ -58,5 +58,7 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-Library/Artifacts/
-
+gj-vln-2020/Library/Artifacts/
+gj-vln-2020/Library/ArtifactDB
+gj-vln-2020/Library/SourceAssetDB
+gj-vln-2020/Library/CurrentLayout-default.dwlt
