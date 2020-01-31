@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,11 +13,15 @@ public class MainMenuButtons : MonoBehaviour
     private Slider volumeSlider;
     [SerializeField]
     private Toggle fullScreenToggle;
+    [SerializeField]
+    private Text StartBtnText;
 
-    // Start is called before the first frame update
     void Start()
     {
-        //if save file found change start btn text
+        if (File.Exists(Application.persistentDataPath + "/pdata.sn"))
+        {
+            StartBtnText.text = "Continue";
+        }
     }
 
     public void StartClicked()
@@ -28,6 +33,8 @@ public class MainMenuButtons : MonoBehaviour
     {
         MainButtons.SetActive(false);
         OptionsMenu.SetActive(true);
+        volumeSlider.value = Game.current.Volume;
+        fullScreenToggle.isOn = Game.current.FullScreen;
     }
 
     public void ExitClicked()
@@ -42,16 +49,18 @@ public class MainMenuButtons : MonoBehaviour
     public void ChangeVolume()
     {
         AudioListener.volume = volumeSlider.value;
+        Game.current.Volume = volumeSlider.value;
     }
 
     public void ToggleFullScreen()
     {
         Screen.SetResolution(Screen.width, Screen.height, fullScreenToggle.isOn);
+        Game.current.FullScreen = fullScreenToggle.isOn;
     }
 
     public void BackClicked()
     {
-        //save options to file
+        Game.SaveGame();
         OptionsMenu.SetActive(false);
         MainButtons.SetActive(true);
     }
