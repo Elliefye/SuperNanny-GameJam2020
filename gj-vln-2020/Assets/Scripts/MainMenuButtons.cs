@@ -1,21 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MainMenuButtons : MonoBehaviour
 {
-    [SerializeField]
-    private Button StartBtn;
-    [SerializeField]
-    private Button OptionsBtn;
-    [SerializeField]
-    private Button ExitBtn;
+    public GameObject MainButtons;
+    public GameObject OptionsMenu;
 
-    // Start is called before the first frame update
+    [SerializeField]
+    private Slider volumeSlider;
+    [SerializeField]
+    private Toggle fullScreenToggle;
+    [SerializeField]
+    private Text StartBtnText;
+
     void Start()
     {
-        //if save file found change start btn text
+        if (File.Exists(Application.persistentDataPath + "/pdata.sn"))
+        {
+            StartBtnText.text = "Continue";
+        }
     }
 
     public void StartClicked()
@@ -25,7 +31,10 @@ public class MainMenuButtons : MonoBehaviour
 
     public void OptionsClicked()
     {
-        //load options menu
+        MainButtons.SetActive(false);
+        OptionsMenu.SetActive(true);
+        volumeSlider.value = Game.current.Volume;
+        fullScreenToggle.isOn = Game.current.FullScreen;
     }
 
     public void ExitClicked()
@@ -35,5 +44,24 @@ public class MainMenuButtons : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    public void ChangeVolume()
+    {
+        AudioListener.volume = volumeSlider.value;
+        Game.current.Volume = volumeSlider.value;
+    }
+
+    public void ToggleFullScreen()
+    {
+        Screen.SetResolution(Screen.width, Screen.height, fullScreenToggle.isOn);
+        Game.current.FullScreen = fullScreenToggle.isOn;
+    }
+
+    public void BackClicked()
+    {
+        Game.SaveGame();
+        OptionsMenu.SetActive(false);
+        MainButtons.SetActive(true);
     }
 }
