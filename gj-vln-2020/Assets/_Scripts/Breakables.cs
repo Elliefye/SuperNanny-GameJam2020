@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Breakables : MonoBehaviour
 {
+    public static int BrokenCount = 0;
     //0 - not broken; 1 - is being fixed
     //2 - is being broken 3 - broken
     public int BreakStatus = 0;
@@ -18,6 +19,7 @@ public class Breakables : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        Game.LoadGame();
 
         switch(this.tag)
         {
@@ -64,6 +66,7 @@ public class Breakables : MonoBehaviour
         Health = 0;
         BreakStatus = 3;
         //stop playing break animation, go to idle broken
+        BrokenCount++;
     }
 
     private IEnumerator fixThis()
@@ -77,5 +80,6 @@ public class Breakables : MonoBehaviour
         Health = 100;
         BreakStatus = 0;
         //stop playing fix animation, go to idle
+        BrokenCount--;
     }
 }
