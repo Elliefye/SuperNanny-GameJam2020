@@ -502,6 +502,9 @@ MonoBehaviour:
   StaminaRechargeRate: 1
   StaminaDecreasePerFrame: 5
   StaminaIncreasePerFrame: 5
+  CharacterAgentAcceleration: 2
+  CharacterAgentDeceleration: 5
+  CharacterAgentCloseToDestination: 4
 --- !u!195 &953299493
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class CameraControlls : MonoBehaviour {
    
     public float ScrollSpeed = 15;
    
-    public float ScrollEdge = 0.1f;
+    public float ScrollEdge =0;
    
     public float PanSpeed = 10;
    
@@ -35,24 +35,30 @@ public class CameraControlls : MonoBehaviour {
  
     void Update () {
         // panning     
-            if ( Input.GetKey("d") ) {             
+            if ( Input.GetKey("d")) 
+            {             
                 transform.Translate(Vector3.right * Time.deltaTime * PanSpeed, Space.Self );   
             }
-            else if ( Input.GetKey("a") ) {            
+            else if ( Input.GetKey("a")) 
+            {            
                 transform.Translate(Vector3.right * Time.deltaTime * -PanSpeed, Space.Self );              
             }
  
-            if ( Input.GetKey("w") || Input.mousePosition.y >= Screen.height * (1 - ScrollEdge) ) {            
+            if ( Input.GetKey("w")) 
+            {            
                 transform.Translate(Vector3.forward * Time.deltaTime * PanSpeed, Space.Self );             
             }
-            else if ( Input.GetKey("s") || Input.mousePosition.y <= Screen.height * ScrollEdge ) {         
+            else if ( Input.GetKey("s")) 
+            {         
                 transform.Translate(Vector3.forward * Time.deltaTime * -PanSpeed, Space.Self );            
             }  
  
-            if ( Input.GetKey("q") || Input.mousePosition.x <= Screen.width * ScrollEdge ) {
+            if ( Input.GetKey("q")) 
+            {
                 transform.Rotate(Vector3.up * Time.deltaTime * -rotateSpeed, Space.World);
             }
-            else if ( Input.GetKey("e") || Input.mousePosition.x >= Screen.width * (1 - ScrollEdge) ) {
+            else if ( Input.GetKey("e"))
+            {
                 transform.Rotate(Vector3.up * Time.deltaTime * rotateSpeed, Space.World);
             }
          
