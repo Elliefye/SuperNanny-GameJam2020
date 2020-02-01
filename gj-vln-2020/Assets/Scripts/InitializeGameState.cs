@@ -13,6 +13,11 @@ public class InitializeGameState : MonoBehaviour
             Game.current.Volume = 1;
             Game.current.FullScreen = Screen.fullScreen;
             Game.current.Money = 0;
+            Game.current.RepairLevel = 0;
+            Game.current.StrengthLevel = 0;
+            Game.current.CleaningLevel = 0;
+            Game.current.SweepingLevel = 0;
+            Game.SaveGame();
         }
         else if (Game.current == null) //with save file
         {
