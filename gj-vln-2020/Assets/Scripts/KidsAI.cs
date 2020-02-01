@@ -79,7 +79,8 @@ public class KidsAI : MonoBehaviour
     void AnimationArrived()
     {
         //choose between destroying animations
-        if (Random.value > 0.5f)
+        string tag = AllBreakables[ArrayIndexNext].gameObject.tag;
+        if (tag == "Kickable" || tag == "Electronic")
         {
             AnimationKicking();
         }
