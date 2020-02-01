@@ -6,7 +6,7 @@ public class CameraControlls : MonoBehaviour {
    
     public float ScrollSpeed = 15;
    
-    public float ScrollEdge =0;
+    public float ScrollEdge = 0f;
    
     public float PanSpeed = 10;
    
@@ -20,7 +20,7 @@ public class CameraControlls : MonoBehaviour {
  
     public Vector2 zoomAngleRange = new Vector2( 20, 70 );
  
-    public float rotateSpeed = 25;
+    public float rotateSpeed =40;
  
     private Vector3 initialPosition;
    
@@ -35,30 +35,24 @@ public class CameraControlls : MonoBehaviour {
  
     void Update () {
         // panning     
-            if ( Input.GetKey("d")) 
-            {             
+            if ( Input.GetKey("d") ) {             
                 transform.Translate(Vector3.right * Time.deltaTime * PanSpeed, Space.Self );   
             }
-            else if ( Input.GetKey("a")) 
-            {            
+            else if ( Input.GetKey("a") ) {            
                 transform.Translate(Vector3.right * Time.deltaTime * -PanSpeed, Space.Self );              
             }
  
-            if ( Input.GetKey("w")) 
-            {            
+            if ( Input.GetKey("w") || Input.mousePosition.y >= Screen.height * (1 - ScrollEdge) ) {            
                 transform.Translate(Vector3.forward * Time.deltaTime * PanSpeed, Space.Self );             
             }
-            else if ( Input.GetKey("s")) 
-            {         
+            else if ( Input.GetKey("s") || Input.mousePosition.y <= Screen.height * ScrollEdge ) {         
                 transform.Translate(Vector3.forward * Time.deltaTime * -PanSpeed, Space.Self );            
             }  
  
-            if ( Input.GetKey("q")) 
-            {
+            if ( Input.GetKey("q") || Input.mousePosition.x <= Screen.width * ScrollEdge ) {
                 transform.Rotate(Vector3.up * Time.deltaTime * -rotateSpeed, Space.World);
             }
-            else if ( Input.GetKey("e"))
-            {
+            else if ( Input.GetKey("e") || Input.mousePosition.x >= Screen.width * (1 - ScrollEdge) ) {
                 transform.Rotate(Vector3.up * Time.deltaTime * rotateSpeed, Space.World);
             }
          

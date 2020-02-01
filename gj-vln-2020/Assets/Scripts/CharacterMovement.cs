@@ -62,6 +62,7 @@ public class CharacterMovement : MonoBehaviour
                 if(NeedsToWalk)
                 {
                     CharacterAnimator.CrossFadeInFixedTime("Idle",0f);
+                    CharacterAgent.updateRotation = false;
                     NeedsToWalk = false;
                     IsRunning = false;
                 }
@@ -109,9 +110,6 @@ public class CharacterMovement : MonoBehaviour
                 {
                     CharacterAgent.SetDestination(transform.position);
                     CharacterAgent.updateRotation = false;
-                    
-
-                    Debug.Log("Hej");
                 }
                 CharacterAgent.speed = 15;
                 CharacterAgent.angularSpeed = 3600;
