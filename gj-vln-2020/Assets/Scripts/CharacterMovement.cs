@@ -28,7 +28,9 @@ public class CharacterMovement : MonoBehaviour
     Texture2D StaminaTexture;
     
     Animator CharacterAnimator;
-    // assigning variable values
+    private bool isFixing = false;
+    public Transform NextItemPosition;
+
     void Start()
     {
         CharacterAgent = GetComponent<NavMeshAgent>();
@@ -41,33 +43,45 @@ public class CharacterMovement : MonoBehaviour
     }
     // Update is called once per frame
     void Update()
-    {   // casting ray once from the mouse position
-        Ray MouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //checking for collisions
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+    {   
+        if(!isFixing)
         {
-            Walking(MouseRay);
-            // Checking if the player can go to the collision point, setting navmesh agent destination, playing walking animation.
-        }
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            Running(MouseRay);
-        }
-        else
-        // checking if the player reached the destination and switching to idle animation
-        if (!CharacterAgent.pathPending)
-        {   
-            if (CharacterAgent.remainingDistance<=0.1f)
-            {   
-                if(NeedsToWalk)
+            // casting ray once from the mouse position
+            Ray MouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //checking for collisions
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                Walking(MouseRay);
+                // Checking if the player can go to the collision point, setting navmesh agent destination, playing walking animation.
+            }
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                Running(MouseRay);
+            }
+            // checking if the player reached the destination and switching to idle animation
+            else if (!CharacterAgent.pathPending)
+            {
+                if (CharacterAgent.remainingDistance <= 0.1f)
                 {
-                    CharacterAnimator.CrossFadeInFixedTime("Idle",0f);
-                    CharacterAgent.updateRotation = false;
-                    NeedsToWalk = false;
-                    IsRunning = false;
+                    if (NeedsToWalk)
+                    {
+                        CharacterAgent.updateRotation = false;
+                        NeedsToWalk = false;
+                        IsRunning = false;
+                        if ((transform.position - NextItemPosition.position).magnitude < 2f) //arrived at destination to fix item
+                        {
+                            PlayFixingAnimation();
+                            StartCoroutine(WaitToFinishFixing());
+                        }
+                        else
+                        {
+                            CharacterAnimator.CrossFadeInFixedTime("Idle", 0.3f);
+                        }
+                    }
                 }
             }
-        } 
+        }
+        
         StaminaRecharge();
     }
     void Walking(Ray ray)
@@ -76,16 +90,13 @@ public class CharacterMovement : MonoBehaviour
         {   
             CharacterAgent.updateRotation = true;
             CharacterAgent.SetDestination(MouseHit.point);
-            CharacterAnimator.CrossFadeInFixedTime("Walking",0f);
+            CharacterAnimator.CrossFadeInFixedTime("Walking",0.3f);
             CharacterAgent.speed = 4;
             CharacterAgent.acceleration = (CharacterAgent.remainingDistance <CharacterAgentCloseToDestination) ? CharacterAgentDeceleration : CharacterAgentAcceleration;
             if (Vector3.Distance(MouseHit.point, transform.position) < CharacterAgent.stoppingDistance)
             {
                 CharacterAgent.SetDestination(transform.position);
                 CharacterAgent.updateRotation = false;
-
-
-                Debug.Log("Hej");
             }
             else
             {
@@ -93,7 +104,6 @@ public class CharacterMovement : MonoBehaviour
             }
             NeedsToWalk = true;
             IsRunning =false;
-            
         }    
     }
     void Running(Ray ray)
@@ -104,7 +114,7 @@ public class CharacterMovement : MonoBehaviour
             if (Physics.Raycast(ray, out MouseHit, 100, whatCanBeClickedOn))
             {  
                 CharacterAgent.SetDestination(MouseHit.point);
-                CharacterAnimator.CrossFadeInFixedTime("Running",0f);
+                CharacterAnimator.CrossFadeInFixedTime("Running",0.3f);
                 CharacterAgent.acceleration = (CharacterAgent.remainingDistance <CharacterAgentCloseToDestination) ? CharacterAgentDeceleration : CharacterAgentAcceleration;
                 if (Vector3.Distance(MouseHit.point, transform.position) < CharacterAgent.stoppingDistance)
                 {
@@ -147,4 +157,42 @@ public class CharacterMovement : MonoBehaviour
         GUI.DrawTexture(StaminaRectangle, StaminaTexture);
     }
 
+    private void PlayFixingAnimation()
+    {
+        switch(NextItemPosition.gameObject.tag)
+        {
+            case ("Electronic"):
+                {
+                    CharacterAnimator.CrossFadeInFixedTime("nanny_Fixing", 0.3f);
+                    break;
+                }
+            case ("Kickable"):
+                {
+                    if(Game.current.CleaningLevel == 0)
+                    {
+                        CharacterAnimator.CrossFadeInFixedTime("nanny_Cleaning", 0.3f);
+                    }
+                    else
+                    {
+                        CharacterAnimator.CrossFadeInFixedTime("nanny_Sweeping", 0.3f);
+                    }
+                    
+                    break;
+                }
+            default:
+                {
+                    CharacterAnimator.CrossFadeInFixedTime("nanny_Lifting", 0.3f);
+                    break;
+                }
+        }
+    }
+
+    private IEnumerator WaitToFinishFixing()
+    {
+        while (NextItemPosition.gameObject.GetComponent<Breakables>().BreakStatus != 3)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+        isFixing = false;
+    }
 }

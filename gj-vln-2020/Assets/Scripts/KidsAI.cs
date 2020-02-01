@@ -33,7 +33,8 @@ public class KidsAI : MonoBehaviour
         KidAnimator = GetComponent<Animator>();
         lastKnownPosition = transform.position;
         lastCheckedTime = Time.time;
-        //LookingForDestination = true;
+        //DEBUG ONLY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        Game.LoadGame();
     }
 
     // Update is called once per frame
