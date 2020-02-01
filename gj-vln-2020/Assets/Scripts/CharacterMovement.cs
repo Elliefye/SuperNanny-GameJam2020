@@ -13,7 +13,7 @@ public class CharacterMovement : MonoBehaviour
     public float StaminaRechargeRate;
     public float StaminaDecreasePerFrame;
     public float StaminaIncreasePerFrame;
-     private float StaminaTimeToRegen = 3.0f;
+    private float StaminaTimeToRegen = 3.0f;
     private NavMeshAgent CharacterAgent;
 
     bool NeedsToWalk;
