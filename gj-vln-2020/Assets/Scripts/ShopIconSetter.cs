@@ -76,7 +76,6 @@ public class ShopIconSetter : MonoBehaviour
                     if (Game.current.Money <= 100)
                     {
                         repairBtn.enabled = false;
-                        repairBtn.interactable = false;
                     }
 
                     break;
@@ -221,7 +220,7 @@ public class ShopIconSetter : MonoBehaviour
                 {
                     staminaImg.sprite = StaminaSprites[0];
                     staminaPrice.text = "100";
-                    staminaDesc.text = "Train your lungs to run longer without getting out of breath";
+                    staminaDesc.text = "Get comfortable shoes for more efficient running";
 
                     if (Game.current.Money <= 100)
                     {
@@ -234,7 +233,7 @@ public class ShopIconSetter : MonoBehaviour
                 {
                     staminaImg.sprite = StaminaSprites[1];
                     staminaPrice.text = "200";
-                    staminaDesc.text = "Increase your stamina further with these breathing excercises";
+                    staminaDesc.text = "Train your lungs to run longer without getting out of breath";
 
                     if (Game.current.Money <= 200)
                     {
