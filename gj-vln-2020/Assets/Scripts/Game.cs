@@ -16,6 +16,10 @@ public class Game
 
     //player stats
     public int Money;
+    public int RepairLevel;
+    public int StrengthLevel;
+    public int CleaningLevel;
+    public int StaminaLevel;
 
     public static void SaveGame()
     {
