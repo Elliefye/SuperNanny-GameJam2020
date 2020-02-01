@@ -14,13 +14,15 @@ public class MainMenuButtons : MonoBehaviour
     [SerializeField]
     private Toggle fullScreenToggle;
     [SerializeField]
-    private Text StartBtnText;
+    private Sprite ResumeSprite;
+    [SerializeField]
+    private Button StartBtn;
 
     void Start()
     {
         if (File.Exists(Application.persistentDataPath + "/pdata.sn"))
         {
-            StartBtnText.text = "Continue";
+            StartBtn.image.sprite = ResumeSprite;
         }
     }
 
