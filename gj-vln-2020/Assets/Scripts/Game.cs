@@ -19,7 +19,7 @@ public class Game
     public int RepairLevel;
     public int StrengthLevel;
     public int CleaningLevel;
-    public int SweepingLevel;
+    public int StaminaLevel;
 
     public static void SaveGame()
     {
