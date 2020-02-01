@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -121,7 +121,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: b592c4b0064af63468f7cd13a0c93dad, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: d649fe70d62b13d468552f5d1c6f6b82, type: 2}
 --- !u!1 &189869709
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,7 +432,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -444,7 +444,13 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &554343873
+--- !u!95 &554343874 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: d15c5ba295ef97741bebf91c136366c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 774642751}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &554343876
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -453,21 +459,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 554343871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 572d4a27b3cbff94384b4863002b9176, type: 3}
+  m_Script: {fileID: 11500000, guid: 487a38f5c1956b348a1d351ea7e0b580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AllBreakables:
   - {fileID: 566137120}
-  - {fileID: 294471840}
-  - {fileID: 1429124232}
-  - {fileID: 1628919653}
+  - {fileID: 1800548708}
   KidAnimator: {fileID: 554343874}
---- !u!95 &554343874 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: d15c5ba295ef97741bebf91c136366c7,
-    type: 3}
-  m_PrefabInstance: {fileID: 774642751}
-  m_PrefabAsset: {fileID: 0}
+  CheckForMovementSeconds: 3
+  MinMovement: 1
 --- !u!1 &566137119
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,7 +693,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: d15c5ba295ef97741bebf91c136366c7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.37179864e-17
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d15c5ba295ef97741bebf91c136366c7,
         type: 3}
@@ -1043,7 +1043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScrollSpeed: 15
   ScrollEdge: 0.1
-  PanSpeed: 15
+  PanSpeed: 1
   zoomRange: {x: -10, y: 100}
   CurrentZoom: 0
   ZoomZpeed: 1

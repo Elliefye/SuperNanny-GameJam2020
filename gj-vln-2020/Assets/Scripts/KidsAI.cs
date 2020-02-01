@@ -7,7 +7,7 @@ public class KidsAI : MonoBehaviour
 {
     public  Animator[] AllBreakables;
     public  Animator KidAnimator;
-    int ArrayIndexNext;
+    int ArrayIndexNext = 0;
     private NavMeshAgent KidAgent;
 
     private float KidAgentAcceleration = 2f;
@@ -15,26 +15,31 @@ public class KidsAI : MonoBehaviour
     private float KidAgentCloseToDestination =1f;
     private bool LookingForDestination;
 
-    private bool KidRunning;
-    private bool kidDestroying;
+    private bool KidRunning = false;
+    private bool kidDestroying = false;
     private Vector3 currentDestination;
 
+    //looking if kid is not stuck
+    float lastCheckedTime;
+    Vector3 lastKnownPosition;
+    public float CheckForMovementSeconds = 3f;
+    public float MinMovement = 1f;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {       
         //Allbreakables
-        ArrayIndexNext = 0;
-        KidAgent = GetComponent<NavMeshAgent>();       
+        KidAgent = GetComponent<NavMeshAgent>();
+        lastKnownPosition = transform.position;
+        lastCheckedTime = Time.time;
         //LookingForDestination = true;
-        KidRunning = false;
-        kidDestroying = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Vector3.Distance(currentDestination, transform.position));
-         if (!KidRunning && !kidDestroying)
+        //Debug.Log(Vector3.Distance(currentDestination, transform.position));
+        if (!KidRunning && !kidDestroying)
          {
             RandomIndex();
             AnimationRunning();
@@ -42,22 +47,25 @@ public class KidsAI : MonoBehaviour
         else if (!kidDestroying)
         {
             if (Vector3.Distance(currentDestination, transform.position) < KidAgent.stoppingDistance)
-            {
+            {                
                 KidAgent.SetDestination(transform.position);
                 KidAgent.updateRotation = false;
-                AnimationArrived();               
+                AnimationArrived();
             }
         }
-        else if (!KidRunning)
+
+        if((Time.time - lastCheckedTime) > CheckForMovementSeconds)
         {
-            StartCoroutine(WaitForKidToDestroy());
+            if((transform.position - lastKnownPosition).magnitude < MinMovement)
+            {
+                KidRunning = false;
+                kidDestroying = false; //force a new destination
+            }
         }
     }
 
     void RandomIndex()
     {
-        Debug.Log(AllBreakables[ArrayIndexNext].transform.position);
-
         int newIndex = Random.Range(0, AllBreakables.Length);
 
         while(newIndex == ArrayIndexNext) //prevent generating the same destination twice in a row
@@ -69,9 +77,16 @@ public class KidsAI : MonoBehaviour
     }
 
     void AnimationArrived()
-    {   
-        Debug.Log("yaaas");        
-        AnimationPushing();
+    {
+        //choose between destroying animations
+        if (Random.value > 0.5f)
+        {
+            AnimationKicking();
+        }
+        else
+        {
+            AnimationPushing();
+        }
     }
     void AnimationRunning()
     {
@@ -81,7 +96,7 @@ public class KidsAI : MonoBehaviour
         KidAgent.updateRotation = true;
         currentDestination = AllBreakables[ArrayIndexNext].transform.position;
         KidAgent.SetDestination(currentDestination);
-        KidAnimator.CrossFadeInFixedTime("Running", 0f);
+        KidAnimator.CrossFadeInFixedTime("Running", 0.3f);
         KidAgent.acceleration = (KidAgent.remainingDistance < KidAgentCloseToDestination) ? KidAgentDeseleration
                                 : KidAgentAcceleration;
     }
@@ -90,13 +105,22 @@ public class KidsAI : MonoBehaviour
         kidDestroying = true;
         KidRunning = false;
         KidAgent.updateRotation = false;
-        KidAnimator.CrossFadeInFixedTime("kid_Pushing", 0f);
+        KidAnimator.CrossFadeInFixedTime("kid_Pushing", 0.3f);
         KidAgent.acceleration = (KidAgent.remainingDistance <KidAgentCloseToDestination) ? KidAgentDeseleration
                                 :KidAgentAcceleration;
+
+        StartCoroutine(WaitForKidToDestroy());
     }
     void AnimationKicking()
     {
+        kidDestroying = true;
+        KidRunning = false;
+        KidAgent.updateRotation = false;
+        KidAnimator.CrossFadeInFixedTime("kid_Kicking", 0.3f);
+        KidAgent.acceleration = (KidAgent.remainingDistance < KidAgentCloseToDestination) ? KidAgentDeseleration
+                                : KidAgentAcceleration;
 
+        StartCoroutine(WaitForKidToDestroy());
     }
 
     IEnumerator WaitForKidToDestroy()
