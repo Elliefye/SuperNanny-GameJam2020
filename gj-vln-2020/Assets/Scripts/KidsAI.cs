@@ -68,7 +68,7 @@ public class KidsAI : MonoBehaviour
     {
         int newIndex = Random.Range(0, AllBreakables.Length);
 
-        while(newIndex == ArrayIndexNext) //prevent generating the same destination twice in a row
+        while (AllBreakables[newIndex].gameObject.GetComponent<Breakables>().BreakStatus != 0) //only generate non-broken destinations
         {
             newIndex = Random.Range(0, AllBreakables.Length);
         }
@@ -79,14 +79,15 @@ public class KidsAI : MonoBehaviour
     void AnimationArrived()
     {
         //choose between destroying animations
+        AllBreakables[ArrayIndexNext].gameObject.GetComponent<Breakables>().Break();
         string tag = AllBreakables[ArrayIndexNext].gameObject.tag;
-        if (tag == "Kickable" || tag == "Electronic")
+        if (tag == "Pushable")
         {
-            AnimationKicking();
+            AnimationPushing();
         }
         else
         {
-            AnimationPushing();
+            AnimationKicking();
         }
     }
     void AnimationRunning()
