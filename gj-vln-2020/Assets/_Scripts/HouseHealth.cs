@@ -8,10 +8,12 @@ public class HouseHealth : MonoBehaviour
 {
     [SerializeField] private KidsAI kidRef;
     private float lastRatio = 1;
+    public static int HouseHealthNum = 100;
 
     void Update()
     {
         float ratio = (float)(kidRef.AllBreakables.Length - Breakables.BrokenCount) / kidRef.AllBreakables.Length;
+        HouseHealthNum = (int)transform.localScale.x * 100;
 
         if (ratio != lastRatio)
         {            
