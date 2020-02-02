@@ -26,7 +26,8 @@ public class Breakables : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();        
+        animator = GetComponent<Animator>(); 
+        Game.LoadGame();       
 
         switch(this.tag)
         {
