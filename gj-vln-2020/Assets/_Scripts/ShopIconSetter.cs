@@ -8,6 +8,8 @@ public class ShopIconSetter : MonoBehaviour
 {
     [SerializeField]
     private Text playerMoney;
+    [SerializeField]
+    private Text playerRep;
 
     [SerializeField]
     private Image repairImg;
@@ -55,6 +57,7 @@ public class ShopIconSetter : MonoBehaviour
     void Start()
     {
         playerMoney.text = Game.current.Money.ToString();
+        playerRep.text = Game.current.Reputation.ToString();
 
         SetRepairItem();
         SetSrengthItem();

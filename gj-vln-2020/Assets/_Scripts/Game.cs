@@ -16,6 +16,7 @@ public class Game
 
     //player stats
     public int Money;
+    public int Reputation;
     public int RepairLevel;
     public int StrengthLevel;
     public int CleaningLevel;

@@ -13,6 +13,7 @@ public class InitializeGameState : MonoBehaviour
             Game.current.Volume = 1;
             Game.current.FullScreen = Screen.fullScreen;
             Game.current.Money = 0;
+            Game.current.Reputation = 0;
             Game.current.RepairLevel = 0;
             Game.current.StrengthLevel = 0;
             Game.current.CleaningLevel = 0;
