@@ -11,8 +11,7 @@ public class Breakables : MonoBehaviour
     public int BreakStatus = 0;
     //for easier status bar display, 0-100
     public int Health = 100;
-    //possible locking to prevent multiple characters from accessing the same object at once?
-    public GameObject Lock = null;
+
     [SerializeField] Sprite FixBtnSprite;
     [SerializeField] Sprite FixBtnSpriteHover;
     [SerializeField] CharacterMovement Player;
@@ -21,7 +20,7 @@ public class Breakables : MonoBehaviour
     private Animator animator;
     private int upgradeLevel;
     //0 - fix, 1 - lift, 2 - clean
-    private int itemType;
+    public int itemType;
 
     private float time;
 
@@ -97,31 +96,36 @@ public class Breakables : MonoBehaviour
         buttonImage.sprite = FixBtnSprite;
     }
 
-    public void Break()
+    public void Break(float damageDuration = 10)
     {
         BreakStatus = 2;
-        animator.CrossFadeInFixedTime("damage", 0.3f);
-        StartCoroutine(breakThis());
+        if(damageDuration <= 3)
+            animator.CrossFadeInFixedTime("damage", 0.3f);
+        StartCoroutine(breakThis(damageDuration));
     }
 
     public void Fix()
     {
-        BreakStatus = 1;
-        animator.CrossFadeInFixedTime("repair", 0.3f);
+        BreakStatus = 1;    
+        //possibly play fix animation here
         StartCoroutine(fixThis());
     }
 
-    private IEnumerator breakThis()
+    private IEnumerator breakThis(float damageDuration = 10)
     {
         while (Health > 0)
         {
             Health--;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(damageDuration/100);
+        }
+
+        if(!animator.GetCurrentAnimatorStateInfo(0).IsName("damage"))
+        {
+            animator.CrossFadeInFixedTime("damage", 0.3f);
         }
 
         Health = 0;
         BreakStatus = 3;
-        //stop playing break animation, go to idle broken
         buttonImage.gameObject.SetActive(true);
         BrokenCount++;
     }
@@ -139,6 +143,7 @@ public class Breakables : MonoBehaviour
         Health = 100;
         BreakStatus = 0;
         //stop playing fix animation, go to idle
+        animator.CrossFadeInFixedTime("repair", 0.3f);
         buttonImage.gameObject.SetActive(false);
         BrokenCount--;
     }
@@ -166,42 +171,23 @@ public class Breakables : MonoBehaviour
 
     private void GetFixingIncrements()
     {
-        if (itemType == 0) //fix
+        if (itemType == 0 || itemType == 1) //fix or lift
         {
-            if (upgradeLevel == 0) //10
-            {
-                time = 0.1f;
-            }
-            else if (upgradeLevel == 1) //7
-            {
-                time = 0.07f;
-            }
-            else if (upgradeLevel == 2) //5
+            if (upgradeLevel == 0) //5
             {
                 time = 0.05f;
             }
-            else //3
+            else if (upgradeLevel == 1) //4
+            {
+                time = 0.04f;
+            }
+            else if (upgradeLevel == 2) //3
             {
                 time = 0.03f;
             }
-        }
-        else if (itemType == 1) //lift
-        {
-            if (upgradeLevel == 0) //11
+            else //2
             {
-                time = 0.11f;
-            }
-            else if (upgradeLevel == 1) //7
-            {
-                time = 0.07f;
-            }
-            else if (upgradeLevel == 2) //5
-            {
-                time = 0.05f;
-            }
-            else //3
-            {
-                time = 0.03f;
+                time = 0.02f;
             }
         }
         else //clean

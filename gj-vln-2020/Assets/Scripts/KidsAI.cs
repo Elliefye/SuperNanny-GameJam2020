@@ -89,15 +89,16 @@ public class KidsAI : MonoBehaviour
 
     void AnimationArrived()
     {
-        //choose between destroying animations
-        AllBreakables[ArrayIndexNext].gameObject.GetComponent<Breakables>().Break();
+        //choose between destroying animations        
         string tag = AllBreakables[ArrayIndexNext].gameObject.tag;
         if (tag == "Pushable")
         {
+            AllBreakables[ArrayIndexNext].gameObject.GetComponent<Breakables>().Break(3);
             AnimationPushing();
         }
         else
         {
+            AllBreakables[ArrayIndexNext].gameObject.GetComponent<Breakables>().Break(5);
             AnimationKicking();
         }
     }
@@ -136,10 +137,11 @@ public class KidsAI : MonoBehaviour
     }
 
     IEnumerator WaitForKidToDestroy()
-    {        
-        while(AllBreakables[ArrayIndexNext].gameObject.GetComponent<Breakables>().BreakStatus != 3)
+    {
+        var breakable = AllBreakables[ArrayIndexNext].gameObject.GetComponent<Breakables>();
+        while (breakable.BreakStatus != 3)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return null;
         }
         kidDestroying = false;
     }

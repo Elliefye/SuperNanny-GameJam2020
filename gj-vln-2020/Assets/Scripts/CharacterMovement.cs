@@ -24,25 +24,19 @@ public class CharacterMovement : MonoBehaviour
 
     bool IsRunning;
 
-    Rect StaminaRectangle;
-    Texture2D StaminaTexture;
-    
     Animator CharacterAnimator;
     private bool isFixing = false;
     public Transform NextItemPosition;
+    public Transform staminaBar;
 
     void Start()
     {
         CharacterAgent = GetComponent<NavMeshAgent>();
         CharacterAnimator = GetComponent<Animator>();
         CurrentStamina = MaxStamina;
-        StaminaRectangle = new Rect(Screen.width / 10, Screen.height *9/10, Screen.width /3, Screen.height / 50);
-        StaminaTexture = new Texture2D(1,1);
-        StaminaTexture.SetPixel(0,0, Color.black);
-        StaminaTexture.Apply();
         StaminaIncreasePerFrame = StaminaIncreasePerFrame * Game.current.StaminaLevel;
     }
-    // Update is called once per frame
+
     void Update()
     {   
         if(!isFixing)
@@ -160,9 +154,7 @@ public class CharacterMovement : MonoBehaviour
     void OnGUI()
     {
         float ratio = CurrentStamina / MaxStamina;
-        float rectWidth = ratio*Screen.width /3;
-        StaminaRectangle.width =rectWidth;
-        GUI.DrawTexture(StaminaRectangle, StaminaTexture);
+        staminaBar.localScale = new Vector3(ratio, 1, 1);
     }
 
     private void PlayFixingAnimation()
