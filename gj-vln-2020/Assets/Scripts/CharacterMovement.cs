@@ -61,11 +61,12 @@ public class CharacterMovement : MonoBehaviour
             // checking if the player reached the destination and switching to idle animation
             else if (!CharacterAgent.pathPending)
             {
-                if (CharacterAgent.remainingDistance <= 0.1f)
+                if (CharacterAgent.remainingDistance <= 1f)
                 {
                     if (NeedsToWalk)
                     {
                         CharacterAgent.updateRotation = false;
+                        CharacterAgent.SetDestination(transform.position);
                         NeedsToWalk = false;
                         IsRunning = false;
                         if (NextItemPosition != null && (transform.position - NextItemPosition.position).magnitude < 2f) //arrived at destination to fix item
