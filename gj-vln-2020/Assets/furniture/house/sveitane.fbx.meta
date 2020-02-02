@@ -7,6 +7,16 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: bedroomWalls
+    second: {fileID: 2100000, guid: 71dfc70e88ff3534782ba304a32ad963, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bedroomfloor
+    second: {fileID: 2100000, guid: e452d83d2cb3b084c8309be432e414a8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: lambert1
     second: {fileID: 2100000, guid: e8753b3b307ac70408174f8e917328a0, type: 2}
   - first:
@@ -19,6 +29,16 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: namas_namas_lambert2
     second: {fileID: 2100000, guid: 9e252ed4630f63442b1690af73ae79d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: voniosfloor
+    second: {fileID: 2100000, guid: 1e840444a90f2a64dbc6ffae4edb4f73, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: voniossiena
+    second: {fileID: 2100000, guid: e9e7cf4d828a2784daa0eed3f35efeb5, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
