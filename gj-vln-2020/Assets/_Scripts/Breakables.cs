@@ -14,6 +14,7 @@ public class Breakables : MonoBehaviour
     //possible locking to prevent multiple characters from accessing the same object at once?
     public GameObject Lock = null;
     [SerializeField] Sprite FixBtnSprite;
+    [SerializeField] Sprite FixBtnSpriteHover;
     [SerializeField] CharacterMovement Player;
     
     private Image buttonImage;
@@ -53,6 +54,7 @@ public class Breakables : MonoBehaviour
             Vector3 viewPos = Camera.main.WorldToViewportPoint(this.transform.position);
             if (viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1 && viewPos.z > 0)
             {
+                buttonImage.gameObject.SetActive(true);
                 float distance = Vector3.Distance(this.transform.position, Camera.main.transform.position);
                 Vector3 namePose = Camera.main.WorldToScreenPoint(this.transform.position);
                 buttonImage.transform.position = namePose;
@@ -61,12 +63,31 @@ public class Breakables : MonoBehaviour
             {
                 buttonImage.gameObject.SetActive(false);
             }
-        }        
+        }     
+        else buttonImage.gameObject.SetActive(false);
     }
 
-    void OnMouseDown()
+    void OnMouseUp()
     {
         Player.NextItemPosition = transform;
+        Player.WalkToFix();
+    }
+
+    void OnMouseOver()
+    {
+        if(Input.GetMouseButtonUp(1)){
+            Player.NextItemPosition = transform;
+            Player.RunToFix();
+        }
+    }
+
+    void OnMouseEnter()
+    {
+        buttonImage.sprite = FixBtnSpriteHover;
+    }
+    void OnMouseExit()
+    {
+        buttonImage.sprite = FixBtnSprite;
     }
 
     public void Break()
@@ -131,5 +152,6 @@ public class Breakables : MonoBehaviour
         buttonImage = childObj.AddComponent<Image>();
         buttonImage.sprite = FixBtnSprite;
         buttonImage.rectTransform.sizeDelta = new Vector2(30, 30);
+        buttonImage.gameObject.SetActive(false);
     }
 }

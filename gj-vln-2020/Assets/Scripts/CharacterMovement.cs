@@ -68,9 +68,11 @@ public class CharacterMovement : MonoBehaviour
                         CharacterAgent.updateRotation = false;
                         NeedsToWalk = false;
                         IsRunning = false;
-                        if ((transform.position - NextItemPosition.position).magnitude < 2f) //arrived at destination to fix item
+                        if (NextItemPosition != null && (transform.position - NextItemPosition.position).magnitude < 2f) //arrived at destination to fix item
                         {
+                            isFixing = true;
                             PlayFixingAnimation();
+                            NextItemPosition.gameObject.GetComponent<Breakables>().Fix();
                             StartCoroutine(WaitToFinishFixing());
                         }
                         else
@@ -189,10 +191,59 @@ public class CharacterMovement : MonoBehaviour
 
     private IEnumerator WaitToFinishFixing()
     {
-        while (NextItemPosition.gameObject.GetComponent<Breakables>().BreakStatus != 3)
+        while (NextItemPosition.gameObject.GetComponent<Breakables>().BreakStatus == 1)
         {
             yield return new WaitForSeconds(0.1f);
         }
         isFixing = false;
+        CharacterAnimator.CrossFadeInFixedTime("Idle", 0.3f);
+    }
+
+    public void WalkToFix()
+    {
+        CharacterAgent.updateRotation = true;
+        CharacterAgent.SetDestination(NextItemPosition.position);
+        CharacterAnimator.CrossFadeInFixedTime("Walking", 0.3f);
+        CharacterAgent.speed = 4;
+        CharacterAgent.acceleration = (CharacterAgent.remainingDistance < CharacterAgentCloseToDestination) ? CharacterAgentDeceleration : CharacterAgentAcceleration;
+        
+        if (Vector3.Distance(NextItemPosition.position, transform.position) < CharacterAgent.stoppingDistance)
+        {
+            CharacterAgent.SetDestination(transform.position);
+            CharacterAgent.updateRotation = false;
+        }
+
+        NeedsToWalk = true;
+        IsRunning = false;
+    }
+
+    public void RunToFix()
+    {
+        if (CurrentStamina > 1)
+        {
+            CharacterAgent.updateRotation = true;
+            CharacterAgent.SetDestination(NextItemPosition.position);
+            CharacterAnimator.CrossFadeInFixedTime("Running", 0.3f);
+            CharacterAgent.speed = 15;
+            CharacterAgent.angularSpeed = 3600;
+            CharacterAgent.acceleration = (CharacterAgent.remainingDistance < CharacterAgentCloseToDestination) ? CharacterAgentDeceleration : CharacterAgentAcceleration;
+
+            if (Vector3.Distance(NextItemPosition.position, transform.position) < CharacterAgent.stoppingDistance)
+            {
+                CharacterAgent.SetDestination(transform.position);
+                CharacterAgent.updateRotation = false;
+            }
+
+            NeedsToWalk = true;
+            if (CurrentStamina < 1)
+            {
+                IsRunning = false;
+            }
+            IsRunning = true;
+        }
+        else
+        {
+            WalkToFix();
+        }
     }
 }

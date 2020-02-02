@@ -646,6 +646,7 @@ MonoBehaviour:
   Health: 100
   Lock: {fileID: 0}
   FixBtnSprite: {fileID: 21300000, guid: 95e2278e057121f4fb9d60818288c521, type: 3}
+  FixBtnSpriteHover: {fileID: 21300000, guid: d8ef130b5fa45fd46bda2bef07d974c4, type: 3}
   Player: {fileID: 507127617}
 --- !u!1 &705507993
 GameObject:
@@ -1437,6 +1438,7 @@ MonoBehaviour:
   Health: 100
   Lock: {fileID: 0}
   FixBtnSprite: {fileID: 21300000, guid: 95e2278e057121f4fb9d60818288c521, type: 3}
+  FixBtnSpriteHover: {fileID: 21300000, guid: d8ef130b5fa45fd46bda2bef07d974c4, type: 3}
   Player: {fileID: 507127617}
 --- !u!1 &1628919648
 GameObject:
@@ -1683,6 +1685,7 @@ MonoBehaviour:
   Health: 100
   Lock: {fileID: 0}
   FixBtnSprite: {fileID: 21300000, guid: 95e2278e057121f4fb9d60818288c521, type: 3}
+  FixBtnSpriteHover: {fileID: 21300000, guid: d8ef130b5fa45fd46bda2bef07d974c4, type: 3}
   Player: {fileID: 507127617}
 --- !u!1001 &1853217369
 PrefabInstance:
