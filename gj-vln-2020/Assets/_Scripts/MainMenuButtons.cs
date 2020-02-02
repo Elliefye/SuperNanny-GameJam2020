@@ -19,7 +19,17 @@ public class MainMenuButtons : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
-
+    void OnEnable()
+    {
+        if(SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            Time.timeScale = 0;
+        }
+    }
+    void OnDisable()
+    {
+        Time.timeScale = 1;
+    }
     public void OptionsClicked()
     {
         MainButtons.SetActive(false);
