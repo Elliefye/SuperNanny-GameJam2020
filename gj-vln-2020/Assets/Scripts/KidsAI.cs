@@ -57,7 +57,7 @@ public class KidsAI : MonoBehaviour
                 }
             }
 
-            if ((Time.time - lastCheckedTime) > CheckForMovementSeconds)
+            if ((Time.time - lastCheckedTime) > CheckForMovementSeconds && !kidDestroying)
             {
                 if ((transform.position - lastKnownPosition).magnitude < MinMovement)
                 {

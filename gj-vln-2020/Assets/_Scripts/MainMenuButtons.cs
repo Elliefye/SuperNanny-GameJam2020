@@ -15,6 +15,10 @@ public class MainMenuButtons : MonoBehaviour
     [SerializeField]
     private Toggle fullScreenToggle;
 
+    private void Start()
+    {
+        Debug.Log(Game.current);
+    }
     public void StartClicked()
     {
         SceneManager.LoadScene(1);
@@ -64,5 +68,10 @@ public class MainMenuButtons : MonoBehaviour
         Game.SaveGame();
         OptionsMenu.SetActive(false);
         MainButtons.SetActive(true);
+    }
+
+    public void BackToStartClicked()
+    {
+        SceneManager.LoadScene(0);
     }
 }

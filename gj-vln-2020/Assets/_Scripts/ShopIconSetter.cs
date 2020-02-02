@@ -56,6 +56,7 @@ public class ShopIconSetter : MonoBehaviour
 
     void Start()
     {
+        Game.current.Money = 1000;
         playerMoney.text = Game.current.Money.ToString();
         playerRep.text = Game.current.Reputation.ToString();
 
@@ -63,6 +64,7 @@ public class ShopIconSetter : MonoBehaviour
         SetSrengthItem();
         SetCleanItem();
         SetStaminaItem();
+        
     }
 
     private void SetRepairItem()
