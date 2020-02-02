@@ -120,7 +120,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 0d24aa86454f2f54aaa737713d9bb9e3, type: 2}
 --- !u!1 &14952085
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,11 +864,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 5bae2fb8673d28146bfd3c224504d149, type: 2}
+      objectReference: {fileID: 9100000, guid: 7349a9670ce4301488d0efa882c954a1, type: 2}
     - target: {fileID: -6057140222963153312, guid: d15c5ba295ef97741bebf91c136366c7,
         type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -5619646152301658063, guid: d15c5ba295ef97741bebf91c136366c7,
         type: 3}
@@ -2312,6 +2312,59 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d15c5ba295ef97741bebf91c136366c7, type: 3}
+--- !u!1 &209184222 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: d15c5ba295ef97741bebf91c136366c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 209184221}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &209184223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209184222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de25f7cff39166f4eb259a6c6cbeb048, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AllBreakables:
+  - {fileID: 1831158848}
+  - {fileID: 1896540865}
+  - {fileID: 1682101528}
+  - {fileID: 1162794521}
+  - {fileID: 359282576}
+  - {fileID: 2108464491}
+  - {fileID: 964713278}
+  - {fileID: 1859238782}
+  - {fileID: 527229411}
+  - {fileID: 1986196710}
+  CheckForMovementSeconds: 3
+  MinMovement: 1
+--- !u!195 &209184224
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209184222}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 500
+  m_StoppingDistance: 1.39
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &248545213
 GameObject:
   m_ObjectHideFlags: 0
@@ -7295,6 +7348,24 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1308707750}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &359282573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359282572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e5befaeea023041b75630e14fdbc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BreakStatus: 0
+  Health: 100
+  Lock: {fileID: 0}
+  FixBtnSprite: {fileID: 21300000, guid: 95e2278e057121f4fb9d60818288c521, type: 3}
+  FixBtnSpriteHover: {fileID: 21300000, guid: 6d1377844c7efef49b530ee8ce66b778, type: 3}
+  Player: {fileID: 722251665}
 --- !u!95 &359282576
 Animator:
   serializedVersion: 3
@@ -7394,6 +7465,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House_Plant_1_1
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 93b7804c0d2944540afe34ed14ff76d7, type: 3}
+      propertyPath: m_TagString
+      value: Kickable
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 93b7804c0d2944540afe34ed14ff76d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 81.24
@@ -7458,6 +7533,24 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1365399459}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &527229408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527229407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e5befaeea023041b75630e14fdbc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BreakStatus: 0
+  Health: 100
+  Lock: {fileID: 0}
+  FixBtnSprite: {fileID: 21300000, guid: 95e2278e057121f4fb9d60818288c521, type: 3}
+  FixBtnSpriteHover: {fileID: 21300000, guid: 6d1377844c7efef49b530ee8ce66b778, type: 3}
+  Player: {fileID: 722251665}
 --- !u!4 &527229410 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400010, guid: fd86dd3bb815de54fb8f5d719048bc69,
@@ -7864,7 +7957,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: fa11cfd18cdf94d4cae9e611662e4426, type: 2}
+      objectReference: {fileID: 9100000, guid: 30438d5c2b9dcab448bfe971fba9517d, type: 2}
     - target: {fileID: -6057140222963153312, guid: 3a80174ad71e72d499310a550cc07da4,
         type: 3}
       propertyPath: m_ApplyRootMotion
@@ -9482,6 +9575,74 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a80174ad71e72d499310a550cc07da4, type: 3}
+--- !u!1 &722251664 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 3a80174ad71e72d499310a550cc07da4,
+    type: 3}
+  m_PrefabInstance: {fileID: 722251663}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &722251665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722251664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1d4e6b45b9c4cb48a7df655884dc5e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatCanBeClickedOn:
+    serializedVersion: 2
+    m_Bits: 1
+  MaxStamina: 100
+  CurrentStamina: 0
+  StaminaRechargeDelayTimer: 3
+  StaminaRechargeTimeToDelay: 0
+  StaminaRechargeRate: 1
+  StaminaDecreasePerFrame: 5
+  StaminaIncreasePerFrame: 5
+  CharacterAgentAcceleration: 2
+  CharacterAgentDeceleration: 5
+  CharacterAgentCloseToDestination: 4
+  NextItemPosition: {fileID: 0}
+--- !u!195 &722251666
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722251664}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 1.5
+  avoidancePriority: 50
+  m_AngularSpeed: 10000
+  m_StoppingDistance: 1.04
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!136 &722251667
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722251664}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &723708878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9492,6 +9653,10 @@ PrefabInstance:
     - target: {fileID: 100002, guid: 56143fa81708d6647bc92eab52aa58e8, type: 3}
       propertyPath: m_Name
       value: Chair_3 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 56143fa81708d6647bc92eab52aa58e8, type: 3}
+      propertyPath: m_TagString
+      value: Pushable
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 56143fa81708d6647bc92eab52aa58e8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10292,6 +10457,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &964713279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964713276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e5befaeea023041b75630e14fdbc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BreakStatus: 0
+  Health: 100
+  Lock: {fileID: 0}
+  FixBtnSprite: {fileID: 21300000, guid: 95e2278e057121f4fb9d60818288c521, type: 3}
+  FixBtnSpriteHover: {fileID: 21300000, guid: 6d1377844c7efef49b530ee8ce66b778, type: 3}
+  Player: {fileID: 722251665}
 --- !u!1001 &976692421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10386,6 +10569,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: aa588f75104cb8042acf31263cd73619, type: 3}
       propertyPath: m_Name
       value: BookCase_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: aa588f75104cb8042acf31263cd73619, type: 3}
+      propertyPath: m_TagString
+      value: Kickable
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: aa588f75104cb8042acf31263cd73619, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10626,6 +10813,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlatScreenTV
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ad6611d95a9ac7d45bc4da137220780c, type: 3}
+      propertyPath: m_TagString
+      value: Electronic
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ad6611d95a9ac7d45bc4da137220780c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 104.72
@@ -10692,6 +10883,36 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 1d79c3e9129697e40bdb1de43b066db6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad6611d95a9ac7d45bc4da137220780c, type: 3}
+--- !u!1 &1162794519 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: ad6611d95a9ac7d45bc4da137220780c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1162794518}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1162794520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162794519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e5befaeea023041b75630e14fdbc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BreakStatus: 0
+  Health: 100
+  Lock: {fileID: 0}
+  FixBtnSprite: {fileID: 21300000, guid: 95e2278e057121f4fb9d60818288c521, type: 3}
+  FixBtnSpriteHover: {fileID: 21300000, guid: 6d1377844c7efef49b530ee8ce66b778, type: 3}
+  Player: {fileID: 722251665}
+--- !u!95 &1162794521 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: ad6611d95a9ac7d45bc4da137220780c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1162794518}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1206556966
 GameObject:
   m_ObjectHideFlags: 0
@@ -15621,6 +15842,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chair_3 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 56143fa81708d6647bc92eab52aa58e8, type: 3}
+      propertyPath: m_TagString
+      value: Pushable
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 56143fa81708d6647bc92eab52aa58e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 87.81
@@ -15759,6 +15984,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Refrigerator_2
       objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: fd86dd3bb815de54fb8f5d719048bc69, type: 3}
+      propertyPath: m_TagString
+      value: Electronic
+      objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: fd86dd3bb815de54fb8f5d719048bc69, type: 3}
       propertyPath: m_LocalPosition.x
       value: 81.44
@@ -15889,6 +16118,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: sveitane
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 3aff06ca0989461458c3734724a21686,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aff06ca0989461458c3734724a21686, type: 3}
 --- !u!1 &1424011064 stripped
@@ -15922,7 +16156,6 @@ GameObject:
   - component: {fileID: 1430000924}
   - component: {fileID: 1430000927}
   - component: {fileID: 1430000926}
-  - component: {fileID: 1430000925}
   m_Layer: 0
   m_Name: leaves
   m_TagString: Untagged
@@ -15944,25 +16177,6 @@ Transform:
   m_Father: {fileID: 1841829744}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1430000925
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1430000923}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3c7f039b39b2e69498dc2da81ef4577b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!23 &1430000926
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16120,6 +16334,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1682101529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682101526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e5befaeea023041b75630e14fdbc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BreakStatus: 0
+  Health: 100
+  Lock: {fileID: 0}
+  FixBtnSprite: {fileID: 21300000, guid: 95e2278e057121f4fb9d60818288c521, type: 3}
+  FixBtnSpriteHover: {fileID: 21300000, guid: 6d1377844c7efef49b530ee8ce66b778, type: 3}
+  Player: {fileID: 722251665}
 --- !u!1001 &1706683181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16130,6 +16362,10 @@ PrefabInstance:
     - target: {fileID: 100004, guid: 93b7804c0d2944540afe34ed14ff76d7, type: 3}
       propertyPath: m_Name
       value: House_Plant_1_1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 93b7804c0d2944540afe34ed14ff76d7, type: 3}
+      propertyPath: m_TagString
+      value: Kickable
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 93b7804c0d2944540afe34ed14ff76d7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16275,6 +16511,7 @@ GameObject:
   - component: {fileID: 1765524717}
   - component: {fileID: 1765524716}
   - component: {fileID: 1765524715}
+  - component: {fileID: 1765524718}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -16347,6 +16584,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -4.491, y: -81.8, z: 0.022000002}
+--- !u!114 &1765524718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765524714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b0fe4815527cb54d93defbb5f271f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScrollSpeed: 15
+  ScrollEdge: 0
+  PanSpeed: 10
+  zoomRange: {x: -10, y: 100}
+  CurrentZoom: 0
+  ZoomZpeed: 1
+  ZoomRotation: 1
+  zoomAngleRange: {x: 20, y: 70}
+  rotateSpeed: 40
 --- !u!1001 &1824720321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16580,6 +16838,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'trashcan '
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 25734882b8a79c740bbb82fdb4a369a8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Kickable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25734882b8a79c740bbb82fdb4a369a8, type: 3}
 --- !u!1 &1831158846 stripped
@@ -16613,6 +16876,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1831158849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831158846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e5befaeea023041b75630e14fdbc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BreakStatus: 0
+  Health: 100
+  Lock: {fileID: 0}
+  FixBtnSprite: {fileID: 21300000, guid: 95e2278e057121f4fb9d60818288c521, type: 3}
+  FixBtnSpriteHover: {fileID: 21300000, guid: 6d1377844c7efef49b530ee8ce66b778, type: 3}
+  Player: {fileID: 722251665}
 --- !u!4 &1841829744 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 93b7804c0d2944540afe34ed14ff76d7,
@@ -16644,6 +16925,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1859238783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859238781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e5befaeea023041b75630e14fdbc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BreakStatus: 0
+  Health: 100
+  Lock: {fileID: 0}
+  FixBtnSprite: {fileID: 21300000, guid: 95e2278e057121f4fb9d60818288c521, type: 3}
+  FixBtnSpriteHover: {fileID: 21300000, guid: 6d1377844c7efef49b530ee8ce66b778, type: 3}
+  Player: {fileID: 722251665}
 --- !u!4 &1859238784 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: aa588f75104cb8042acf31263cd73619,
@@ -16660,6 +16959,10 @@ PrefabInstance:
     - target: {fileID: 100004, guid: 93b7804c0d2944540afe34ed14ff76d7, type: 3}
       propertyPath: m_Name
       value: House_Plant_1_1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 93b7804c0d2944540afe34ed14ff76d7, type: 3}
+      propertyPath: m_TagString
+      value: Kickable
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 93b7804c0d2944540afe34ed14ff76d7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16719,6 +17022,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93b7804c0d2944540afe34ed14ff76d7, type: 3}
+--- !u!1 &1896540863 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: 93b7804c0d2944540afe34ed14ff76d7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1896540862}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1896540864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896540863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e5befaeea023041b75630e14fdbc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BreakStatus: 0
+  Health: 100
+  Lock: {fileID: 0}
+  FixBtnSprite: {fileID: 21300000, guid: 95e2278e057121f4fb9d60818288c521, type: 3}
+  FixBtnSpriteHover: {fileID: 21300000, guid: 6d1377844c7efef49b530ee8ce66b778, type: 3}
+  Player: {fileID: 722251665}
+--- !u!95 &1896540865
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896540863}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3c7f039b39b2e69498dc2da81ef4577b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1911129283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16729,6 +17075,10 @@ PrefabInstance:
     - target: {fileID: 100002, guid: 94cd5fa7d84e65045b1ab6e8fc78c044, type: 3}
       propertyPath: m_Name
       value: Cooker_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 94cd5fa7d84e65045b1ab6e8fc78c044, type: 3}
+      propertyPath: m_TagString
+      value: Electronic
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 94cd5fa7d84e65045b1ab6e8fc78c044, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17064,6 +17414,24 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1911129283}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1986196707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986196706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e5befaeea023041b75630e14fdbc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BreakStatus: 0
+  Health: 100
+  Lock: {fileID: 0}
+  FixBtnSprite: {fileID: 21300000, guid: 95e2278e057121f4fb9d60818288c521, type: 3}
+  FixBtnSpriteHover: {fileID: 21300000, guid: 6d1377844c7efef49b530ee8ce66b778, type: 3}
+  Player: {fileID: 722251665}
 --- !u!4 &1986196709 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 94cd5fa7d84e65045b1ab6e8fc78c044,
@@ -17244,6 +17612,24 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 723708878}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2108464487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108464486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e5befaeea023041b75630e14fdbc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BreakStatus: 0
+  Health: 100
+  Lock: {fileID: 0}
+  FixBtnSprite: {fileID: 21300000, guid: 95e2278e057121f4fb9d60818288c521, type: 3}
+  FixBtnSpriteHover: {fileID: 21300000, guid: 6d1377844c7efef49b530ee8ce66b778, type: 3}
+  Player: {fileID: 722251665}
 --- !u!95 &2108464491
 Animator:
   serializedVersion: 3
@@ -23468,7 +23854,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3958591408986069481
 Transform:
   m_ObjectHideFlags: 0

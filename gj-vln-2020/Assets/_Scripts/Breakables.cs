@@ -100,14 +100,14 @@ public class Breakables : MonoBehaviour
     public void Break()
     {
         BreakStatus = 2;
-        //animator play break animation
+        animator.CrossFadeInFixedTime("damage", 0.3f);
         StartCoroutine(breakThis());
     }
 
     public void Fix()
     {
         BreakStatus = 1;
-        //play fix anim
+        animator.CrossFadeInFixedTime("repair", 0.3f);
         StartCoroutine(fixThis());
     }
 
