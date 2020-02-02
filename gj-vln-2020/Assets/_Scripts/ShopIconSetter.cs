@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ShopIconSetter : MonoBehaviour
@@ -53,10 +54,6 @@ public class ShopIconSetter : MonoBehaviour
 
     void Start()
     {
-        //DEBUG -----------------------------------------
-        Game.LoadGame();
-        Game.current.Money = 1000;
-        //DEBUG END -------------------------------------
         playerMoney.text = Game.current.Money.ToString();
 
         SetRepairItem();
@@ -314,5 +311,15 @@ public class ShopIconSetter : MonoBehaviour
             Game.SaveGame();
             SetStaminaItem();
         }
+    }
+
+    public void StartClicked()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void BackClicked()
+    {
+        SceneManager.LoadScene(0);
     }
 }
