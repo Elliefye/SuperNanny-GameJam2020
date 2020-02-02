@@ -20,6 +20,10 @@ public class Breakables : MonoBehaviour
     private Image buttonImage;
     private Animator animator;
     private int upgradeLevel;
+    //0 - fix, 1 - lift, 2 - clean
+    private int itemType;
+
+    private float time;
 
     private void Awake()
     {
@@ -30,16 +34,19 @@ public class Breakables : MonoBehaviour
             case ("Electronic"):
                 {
                     upgradeLevel = Game.current.RepairLevel;
+                    itemType = 0;
                     break;
                 }
             case ("Kickable"):
                 {
                     upgradeLevel = Game.current.CleaningLevel;
+                    itemType = 2;
                     break;
                 }
             default:
                 {
                     upgradeLevel = Game.current.StrengthLevel;
+                    itemType = 1;
                     break;
                 }
         }
@@ -108,7 +115,7 @@ public class Breakables : MonoBehaviour
     {
         while (Health > 0)
         {
-            Health -= 5;
+            Health--;
             yield return new WaitForSeconds(0.1f);
         }
 
@@ -121,10 +128,12 @@ public class Breakables : MonoBehaviour
 
     private IEnumerator fixThis()
     {
+        GetFixingIncrements();
+
         while(Health < 100)
         {
-            Health += 2 * upgradeLevel;
-            yield return new WaitForSeconds(0.1f);
+            Health++;
+            yield return new WaitForSeconds(time);
         }
 
         Health = 100;
@@ -153,5 +162,62 @@ public class Breakables : MonoBehaviour
         buttonImage.sprite = FixBtnSprite;
         buttonImage.rectTransform.sizeDelta = new Vector2(30, 30);
         buttonImage.gameObject.SetActive(false);
+    }
+
+    private void GetFixingIncrements()
+    {
+        if (itemType == 0) //fix
+        {
+            if (upgradeLevel == 0) //10
+            {
+                time = 0.1f;
+            }
+            else if (upgradeLevel == 1) //7
+            {
+                time = 0.07f;
+            }
+            else if (upgradeLevel == 2) //5
+            {
+                time = 0.05f;
+            }
+            else //3
+            {
+                time = 0.03f;
+            }
+        }
+        else if (itemType == 1) //lift
+        {
+            if (upgradeLevel == 0) //11
+            {
+                time = 0.11f;
+            }
+            else if (upgradeLevel == 1) //7
+            {
+                time = 0.07f;
+            }
+            else if (upgradeLevel == 2) //5
+            {
+                time = 0.05f;
+            }
+            else //3
+            {
+                time = 0.03f;
+            }
+        }
+        else //clean
+        {
+            if (upgradeLevel == 0) //6.3
+            {
+                time = 0.063f;
+            }
+            else if (upgradeLevel == 1) //4
+            {
+                time = 0.04f;
+            }
+            else if (upgradeLevel == 2) //2
+            {
+                time = 0.023f;
+            }
+        }
     }
 }

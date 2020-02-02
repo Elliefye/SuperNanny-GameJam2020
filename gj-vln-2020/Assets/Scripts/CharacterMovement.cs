@@ -40,6 +40,7 @@ public class CharacterMovement : MonoBehaviour
         StaminaTexture = new Texture2D(1,1);
         StaminaTexture.SetPixel(0,0, Color.black);
         StaminaTexture.Apply();
+        StaminaIncreasePerFrame = StaminaIncreasePerFrame * Game.current.StaminaLevel;
     }
     // Update is called once per frame
     void Update()
@@ -136,21 +137,25 @@ public class CharacterMovement : MonoBehaviour
                 IsRunning = true;
             }    
         }
+        else
+        {
+            Walking(ray);
+        }
     }
     void StaminaRecharge()
     {
         if (IsRunning)
-     {
-         CurrentStamina = Mathf.Clamp(CurrentStamina - (StaminaDecreasePerFrame * Time.deltaTime), 0.0f, MaxStamina);
-         StaminaRechargeDelayTimer = 0.0f;
-     }
-     else if (CurrentStamina < MaxStamina)
-     {
-         if (StaminaRechargeDelayTimer >= StaminaTimeToRegen)
-             CurrentStamina = Mathf.Clamp(CurrentStamina + (StaminaIncreasePerFrame * Time.deltaTime), 0.0f, MaxStamina);
-         else
-             StaminaRechargeDelayTimer += Time.deltaTime;
-     }
+        {
+            CurrentStamina = Mathf.Clamp(CurrentStamina - (StaminaDecreasePerFrame * Time.deltaTime), 0.0f, MaxStamina);
+            StaminaRechargeDelayTimer = 0.0f;
+        }
+        else if (CurrentStamina < MaxStamina)
+        {
+            if (StaminaRechargeDelayTimer >= StaminaTimeToRegen)
+                CurrentStamina = Mathf.Clamp(CurrentStamina + (StaminaIncreasePerFrame * Time.deltaTime), 0.0f, MaxStamina);
+            else
+                StaminaRechargeDelayTimer += Time.deltaTime;
+        }
     }
     void OnGUI()
     {
@@ -178,8 +183,7 @@ public class CharacterMovement : MonoBehaviour
                     else
                     {
                         CharacterAnimator.CrossFadeInFixedTime("nanny_Sweeping", 0.3f);
-                    }
-                    
+                    }                    
                     break;
                 }
             default:
