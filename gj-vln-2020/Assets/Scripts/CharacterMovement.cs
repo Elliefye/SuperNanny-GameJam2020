@@ -17,8 +17,11 @@ public class CharacterMovement : MonoBehaviour
     private NavMeshAgent CharacterAgent;
 
     public float CharacterAgentAcceleration = 2f;
-    public float CharacterAgentDeceleration = 5f;
+    public float CharacterAgentDeceleration = 100f;
     public float CharacterAgentCloseToDestination = 0.00000000000001f;
+
+    public float GameStartTimer;
+    public GameObject GameOverCanvas;
 
     bool NeedsToWalk;
 
@@ -34,11 +37,13 @@ public class CharacterMovement : MonoBehaviour
         CharacterAgent = GetComponent<NavMeshAgent>();
         CharacterAnimator = GetComponent<Animator>();
         CurrentStamina = MaxStamina;
-        StaminaIncreasePerFrame = StaminaIncreasePerFrame * Game.current.StaminaLevel;
+        StaminaIncreasePerFrame = StaminaIncreasePerFrame * (Game.current.StaminaLevel +1);
+        GameStartTimer = 0.0f;
     }
 
     void Update()
     {   
+        GameTimer();
         if(!isFixing)
         {
             // casting ray once from the mouse position
@@ -90,7 +95,7 @@ public class CharacterMovement : MonoBehaviour
             CharacterAgent.SetDestination(MouseHit.point);
             CharacterAnimator.CrossFadeInFixedTime("Walking",0.3f);
             CharacterAgent.speed = 4;
-            //CharacterAgent.acceleration = (CharacterAgent.remainingDistance <CharacterAgentCloseToDestination) ? CharacterAgentDeceleration : CharacterAgentAcceleration;
+            CharacterAgent.acceleration = (CharacterAgent.remainingDistance <CharacterAgentCloseToDestination) ? CharacterAgentDeceleration : CharacterAgentAcceleration;
             if (Vector3.Distance(MouseHit.point, transform.position) < CharacterAgent.stoppingDistance)
             {
                 CharacterAgent.SetDestination(transform.position);
@@ -113,14 +118,13 @@ public class CharacterMovement : MonoBehaviour
             {  
                 CharacterAgent.SetDestination(MouseHit.point);
                 CharacterAnimator.CrossFadeInFixedTime("Running",0.3f);
-                //CharacterAgent.acceleration = (CharacterAgent.remainingDistance <CharacterAgentCloseToDestination) ? CharacterAgentDeceleration : CharacterAgentAcceleration;
+                CharacterAgent.acceleration = (CharacterAgent.remainingDistance <CharacterAgentCloseToDestination) ? CharacterAgentDeceleration : CharacterAgentAcceleration;
                 if (Vector3.Distance(MouseHit.point, transform.position) < CharacterAgent.stoppingDistance)
                 {
                     CharacterAgent.SetDestination(transform.position);
                     CharacterAgent.updateRotation = false;
                 }
                 CharacterAgent.speed = 15;
-                //CharacterAgent.angularSpeed = 3600;
                 NeedsToWalk = true;
                 //CharacterAgent.velocity = CharacterAgent.velocity*10;
                if(CurrentStamina <1)
@@ -144,9 +148,12 @@ public class CharacterMovement : MonoBehaviour
             StaminaRechargeDelayTimer = 0.0f;
         }
         else if (CurrentStamina < MaxStamina)
-        {
+        {   
+            Debug.Log(CurrentStamina);
             if (StaminaRechargeDelayTimer >= StaminaTimeToRegen)
-                CurrentStamina = Mathf.Clamp(CurrentStamina + (StaminaIncreasePerFrame * Time.deltaTime), 0.0f, MaxStamina);
+                {CurrentStamina = Mathf.Clamp(CurrentStamina + (StaminaIncreasePerFrame * Time.deltaTime), 0.0f, MaxStamina);
+                Debug.Log(CurrentStamina);
+                }
             else
                 StaminaRechargeDelayTimer += Time.deltaTime;
         }
@@ -157,7 +164,7 @@ public class CharacterMovement : MonoBehaviour
         staminaBar.localScale = new Vector3(ratio, 1, 1);
     }
 
-    private void PlayFixingAnimation()
+     void PlayFixingAnimation()
     {
         switch(NextItemPosition.gameObject.tag)
         {
@@ -186,7 +193,7 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    private IEnumerator WaitToFinishFixing()
+     IEnumerator WaitToFinishFixing()
     {
         while (NextItemPosition.gameObject.GetComponent<Breakables>().BreakStatus == 1)
         {
@@ -202,7 +209,7 @@ public class CharacterMovement : MonoBehaviour
         CharacterAgent.SetDestination(NextItemPosition.position);
         CharacterAnimator.CrossFadeInFixedTime("Walking", 0.3f);
         CharacterAgent.speed = 4;
-        //CharacterAgent.acceleration = (CharacterAgent.remainingDistance < CharacterAgentCloseToDestination) ? CharacterAgentDeceleration : CharacterAgentAcceleration;
+        CharacterAgent.acceleration = (CharacterAgent.remainingDistance < CharacterAgentCloseToDestination) ? CharacterAgentDeceleration : CharacterAgentAcceleration;
         
         if (Vector3.Distance(NextItemPosition.position, transform.position) < CharacterAgent.stoppingDistance)
         {
@@ -222,8 +229,7 @@ public class CharacterMovement : MonoBehaviour
             CharacterAgent.SetDestination(NextItemPosition.position);
             CharacterAnimator.CrossFadeInFixedTime("Running", 0.3f);
             CharacterAgent.speed = 15;
-            //CharacterAgent.angularSpeed = 3600;
-            //CharacterAgent.acceleration = (CharacterAgent.remainingDistance < CharacterAgentCloseToDestination) ? CharacterAgentDeceleration : CharacterAgentAcceleration;
+            CharacterAgent.acceleration = (CharacterAgent.remainingDistance < CharacterAgentCloseToDestination) ? CharacterAgentDeceleration : CharacterAgentAcceleration;
 
             if (Vector3.Distance(NextItemPosition.position, transform.position) < CharacterAgent.stoppingDistance)
             {
@@ -242,5 +248,35 @@ public class CharacterMovement : MonoBehaviour
         {
             WalkToFix();
         }
+    }
+
+     void GameTimer()
+    {
+        bool GameOverPlayed = false;
+        
+        
+        if (GameStartTimer >= 60.0f)
+        {
+            
+            if(GameStartTimer <= 5.5f)
+            {
+                GameOverCanvas.SetActive(true);;
+            GameOverPlayed = true;
+
+            }
+            
+            
+            Debug.Log("gameover");
+        }
+        
+        else
+        {   
+            GameStartTimer += Time.deltaTime;
+            Debug.Log(GameStartTimer);
+            GameOverPlayed = false;
+            Debug.Log(GameOverPlayed);
+        }
+        
+
     }
 }

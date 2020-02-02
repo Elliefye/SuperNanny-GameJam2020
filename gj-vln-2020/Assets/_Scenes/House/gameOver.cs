@@ -11,25 +11,22 @@ public class gameOver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("ShowText");
+        ShowText();
     }
 
-    IEnumerator ShowText()
+    void ShowText()
     {
         int moneyGained = HouseHealth.HouseHealthNum;
-        int repGained = Mathf.RoundToInt(moneyGained/2);
-        int currentMoney = Game.current.Money;
-        int currentRep = Game.current.Reputation;
-        while(moneyGained != 0)
-        {
-            moneyText.text = currentMoney + " +" + moneyGained;
-            repText.text = currentRep + " +" + repGained;
-            currentRep+=2;
-            currentMoney+=2;
-            moneyGained-=2;
-            repGained-=2;
-            yield return null;
-        }
+      
+        
+            moneyText.text =  moneyGained.ToString();
+            repText.text = Mathf.RoundToInt(moneyGained/2).ToString();
+
+            Game.current.Money += moneyGained;
+            Game.current.Reputation +=Mathf.RoundToInt(moneyGained/2) ;
+         
+            
+        
     }
     public void BackToShop()
     {
