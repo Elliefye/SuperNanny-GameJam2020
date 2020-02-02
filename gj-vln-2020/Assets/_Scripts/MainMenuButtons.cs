@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenuButtons : MonoBehaviour
@@ -10,25 +11,13 @@ public class MainMenuButtons : MonoBehaviour
     public GameObject OptionsMenu;
 
     [SerializeField]
-    private Slider volumeSlider;
+    private Slider volumeSlider = null;
     [SerializeField]
     private Toggle fullScreenToggle;
-    [SerializeField]
-    private Sprite ResumeSprite;
-    [SerializeField]
-    private Button StartBtn;
-
-    void Start()
-    {
-        if (File.Exists(Application.persistentDataPath + "/pdata.sn"))
-        {
-            //StartBtn.image.sprite = ResumeSprite;
-        }
-    }
 
     public void StartClicked()
     {
-        //load next scene
+        SceneManager.LoadScene(1);
     }
 
     public void OptionsClicked()

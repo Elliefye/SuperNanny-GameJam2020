@@ -53,10 +53,6 @@ public class ShopIconSetter : MonoBehaviour
 
     void Start()
     {
-        //DEBUG -----------------------------------------
-        Game.LoadGame();
-        Game.current.Money = 1000;
-        //DEBUG END -------------------------------------
         playerMoney.text = Game.current.Money.ToString();
 
         SetRepairItem();
