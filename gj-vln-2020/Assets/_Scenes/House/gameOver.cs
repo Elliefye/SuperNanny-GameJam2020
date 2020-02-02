@@ -24,6 +24,7 @@ public class gameOver : MonoBehaviour
 
             Game.current.Money += moneyGained;
             Game.current.Reputation +=Mathf.RoundToInt(moneyGained/2) ;
+            Game.SaveGame();
          
             
         

@@ -258,12 +258,11 @@ public class CharacterMovement : MonoBehaviour
         if (GameStartTimer >= 60.0f)
         {
             
-            if(GameStartTimer <= 5.5f)
-            {
+            
                 GameOverCanvas.SetActive(true);;
             GameOverPlayed = true;
 
-            }
+            
             
             
             Debug.Log("gameover");
@@ -271,7 +270,7 @@ public class CharacterMovement : MonoBehaviour
         
         else
         {   
-            GameStartTimer += Time.deltaTime;
+            GameStartTimer +=Time.deltaTime;
             Debug.Log(GameStartTimer);
             GameOverPlayed = false;
             Debug.Log(GameOverPlayed);
