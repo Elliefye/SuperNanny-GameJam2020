@@ -14,18 +14,19 @@ public class dontDestroy : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = music[0];
         audioSource.Play();
+        DontDestroyOnLoad(this.gameObject);
     }
     void FixedUpdate()
     {
-        if(SceneManager.GetActiveScene().buildIndex != currentScene)
+        if(SceneManager.GetActiveScene().buildIndex != currentScene && SceneManager.GetActiveScene().buildIndex != 1)
         {
             if(currentScene == 0)
             {
-                currentScene = 3;
+                currentScene = 2;
                 audioSource.clip = music[1];
                 audioSource.Play();
             }
-            else if(currentScene == 3)
+            else if(currentScene == 2)
             {
                 currentScene = 0;
                 audioSource.clip = music[0];

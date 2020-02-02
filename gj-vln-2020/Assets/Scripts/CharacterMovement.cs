@@ -90,7 +90,7 @@ public class CharacterMovement : MonoBehaviour
             CharacterAgent.SetDestination(MouseHit.point);
             CharacterAnimator.CrossFadeInFixedTime("Walking",0.3f);
             CharacterAgent.speed = 4;
-            CharacterAgent.acceleration = (CharacterAgent.remainingDistance <CharacterAgentCloseToDestination) ? CharacterAgentDeceleration : CharacterAgentAcceleration;
+            //CharacterAgent.acceleration = (CharacterAgent.remainingDistance <CharacterAgentCloseToDestination) ? CharacterAgentDeceleration : CharacterAgentAcceleration;
             if (Vector3.Distance(MouseHit.point, transform.position) < CharacterAgent.stoppingDistance)
             {
                 CharacterAgent.SetDestination(transform.position);
@@ -113,14 +113,14 @@ public class CharacterMovement : MonoBehaviour
             {  
                 CharacterAgent.SetDestination(MouseHit.point);
                 CharacterAnimator.CrossFadeInFixedTime("Running",0.3f);
-                CharacterAgent.acceleration = (CharacterAgent.remainingDistance <CharacterAgentCloseToDestination) ? CharacterAgentDeceleration : CharacterAgentAcceleration;
+                //CharacterAgent.acceleration = (CharacterAgent.remainingDistance <CharacterAgentCloseToDestination) ? CharacterAgentDeceleration : CharacterAgentAcceleration;
                 if (Vector3.Distance(MouseHit.point, transform.position) < CharacterAgent.stoppingDistance)
                 {
                     CharacterAgent.SetDestination(transform.position);
                     CharacterAgent.updateRotation = false;
                 }
                 CharacterAgent.speed = 15;
-                CharacterAgent.angularSpeed = 3600;
+                //CharacterAgent.angularSpeed = 3600;
                 NeedsToWalk = true;
                 //CharacterAgent.velocity = CharacterAgent.velocity*10;
                if(CurrentStamina <1)
@@ -202,7 +202,7 @@ public class CharacterMovement : MonoBehaviour
         CharacterAgent.SetDestination(NextItemPosition.position);
         CharacterAnimator.CrossFadeInFixedTime("Walking", 0.3f);
         CharacterAgent.speed = 4;
-        CharacterAgent.acceleration = (CharacterAgent.remainingDistance < CharacterAgentCloseToDestination) ? CharacterAgentDeceleration : CharacterAgentAcceleration;
+        //CharacterAgent.acceleration = (CharacterAgent.remainingDistance < CharacterAgentCloseToDestination) ? CharacterAgentDeceleration : CharacterAgentAcceleration;
         
         if (Vector3.Distance(NextItemPosition.position, transform.position) < CharacterAgent.stoppingDistance)
         {
@@ -222,8 +222,8 @@ public class CharacterMovement : MonoBehaviour
             CharacterAgent.SetDestination(NextItemPosition.position);
             CharacterAnimator.CrossFadeInFixedTime("Running", 0.3f);
             CharacterAgent.speed = 15;
-            CharacterAgent.angularSpeed = 3600;
-            CharacterAgent.acceleration = (CharacterAgent.remainingDistance < CharacterAgentCloseToDestination) ? CharacterAgentDeceleration : CharacterAgentAcceleration;
+            //CharacterAgent.angularSpeed = 3600;
+            //CharacterAgent.acceleration = (CharacterAgent.remainingDistance < CharacterAgentCloseToDestination) ? CharacterAgentDeceleration : CharacterAgentAcceleration;
 
             if (Vector3.Distance(NextItemPosition.position, transform.position) < CharacterAgent.stoppingDistance)
             {
